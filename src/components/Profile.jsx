@@ -1,13 +1,15 @@
-import React from 'react'
-import './Profile.css'
+import React, { useState, useEffect } from 'react';
+import employeesData from './employeesData.json';
 
-function Profile() {
+const Profile = () => {
   const [inputValue, setInputValue] = useState('');
-  const [employees, setEmployees] = useState([
-    { id: 1, name: 'Arjun', dob: '16-11-2000', role: 'Software Engineer' },
-    { id: 2, name: 'Mahesh', dob: '15-11-2000', role: 'Web Engineer' },
-    // Add more employees as needed
-  ]);
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from JSON file or any other API
+    setEmployees(employeesData);
+  }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -15,27 +17,27 @@ function Profile() {
   const filteredEmployees = employees.filter((employee) =>
     employee.name.toLowerCase().includes(inputValue.toLowerCase())
   );
-  return (
-    <div className='div-conatiner1'>
-    <input
-      type="text"
-      placeholder="Enter employee name"
-      value={inputValue}
-      onChange={handleInputChange}
-      className="input-emp" // Add the class name here
-    />
-    {filteredEmployees.map((employee) => (
-      <div key={employee.id}>
-        <p>EMP ID: {employee.id}</p>
-        <p>Name: {employee.name}</p>
-        <p>DOB: {employee.dob}</p>
-        <p>Role: {employee.role}</p>
-        <hr />
-      </div>
-    ))}
-  </div>
- 
-  )
-}
 
-export default Profile
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter employee name"
+        value={inputValue}
+        onChange={handleInputChange}
+        className="input-emp"
+      />
+      {filteredEmployees.map((employee) => (
+        <div key={employee.id}>
+          <p>EMP ID: {employee.id}</p>
+          <p>Name: {employee.name}</p>
+          <p>DOB: {employee.dob}</p>
+          <p>Role: {employee.role}</p>
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Profile;
