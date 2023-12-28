@@ -1,0 +1,29 @@
+/* Common styles for both resolutions */
+.text-style {
+    text-align: center;
+    font: normal normal bold 16px/21px Mulish;
+    letter-spacing: 0.02px;
+    color: #FFFFFFB3;
+    opacity: 1;
+  }
+  
+  /* Styles for 412 X 914 px (Supports most Android devices) */
+  @media screen and (max-width: 412px) {
+    .text-style {
+      top: 208px;
+      left: 10px; /* Adjust the left position as needed */
+      width: 156px;
+      height: 20px;
+    }
+  }
+  
+  /* Styles for 390 X 834 px (Supports most iOS devices) */
+  @media screen and (max-width: 390px) {
+    .text-style {
+      top: 208px;
+      left: 10px; /* Adjust the left position as needed */
+      width: 156px;
+      height: 20px;
+    }
+  }
+  
